@@ -56,7 +56,7 @@ class VoomClient:
                 'X-Request-Signature': signature
             })
 
-        response = requests.request(method, url, json=data, headers=headers, auth=auth)
+        response = requests.request(method, url, json=data, headers=headers, auth=auth, timeout=30)
         response.raise_for_status()
         return response.json()
 
@@ -68,4 +68,4 @@ class VoomClient:
         return self._call_api("POST", self.API_BULK_PUSH, data)
 
     def get_units(self):
-        return self._call_api("GET", self.API_GET_UNITS)
+        return self._call_api("POST", self.API_GET_UNITS , data={"page": 1, "limit": 10})
