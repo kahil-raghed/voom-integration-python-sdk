@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voom-integration-sdk"
+version = "0.1.0"
+authors = [
+  { name="Voom", email="info@voom.ly" },
+]
+description = "Python SDK for Voom CRM Integration"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/kahil-raghed/voom-integration-python-sdk"
+"Bug Tracker" = "https://github.com/kahil-raghed/voom-integration-python-sdk/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
