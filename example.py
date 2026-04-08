@@ -1,13 +1,13 @@
 import os
-from src.client import VoomClient
-from src.units import UnitFactory
+from voom_integration_sdk.client import Client
+from voom_integration_sdk.units import UnitFactory
 
 # 1. Initialize the client
 # Replace with your actual credentials or use environment variables
 client_id = os.getenv("VOOM_CLIENT_ID", "your_client_id")
 client_secret = os.getenv("VOOM_CLIENT_SECRET", "your_client_secret")
 
-client = VoomClient(client_id, client_secret)
+client = Client(client_id, client_secret)
 
 # 2. Test connection (Hello endpoint)
 try:

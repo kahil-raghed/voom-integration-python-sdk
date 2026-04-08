@@ -37,12 +37,12 @@ pip install .
 To get started, you need your `client_id` and `client_secret` provided by Voom.
 
 ```python
-from src.client import VoomClient
+from voom_integration_sdk.client import Client
 
 client_id = "your_client_id"
 client_secret = "your_client_secret"
 
-client = VoomClient(client_id, client_secret)
+client = Client(client_id, client_secret)
 ```
 
 ### 2. Test Connection
@@ -62,7 +62,7 @@ except Exception as e:
 Use the `UnitFactory` to create units and push them in bulk.
 
 ```python
-from src.units import UnitFactory
+from voom_integration_sdk.units import UnitFactory
 
 # Create a unit
 unit = UnitFactory.make(
@@ -98,13 +98,13 @@ Each request includes:
 If your environment requires Basic Auth, you can enable it:
 
 ```python
-client = VoomClient(client_id, client_secret, basic_auth=("username", "password"))
+client = Client(client_id, client_secret, basic_auth=("username", "password"))
 client.use_basic_auth(True)
 ```
 
 ## API Reference
 
-### `VoomClient`
+### `Client`
 
 - `__init__(client_id, client_secret, basic_auth=None)`: Initialize the client.
 - `hello()`: Verifies connection and credentials.
@@ -123,7 +123,7 @@ The SDK uses `unittest` for testing. You can run the end-to-end tests using the 
 ```bash
 export VOOM_CLIENT_ID="your_client_id"
 export VOOM_CLIENT_SECRET="your_client_secret"
-python -m unittest discover src/tests
+python -m unittest discover tests
 ```
 
 ## License

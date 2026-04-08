@@ -1,31 +1,42 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "voom-integration-sdk"
 version = "0.1.0"
-authors = [
-  { name="Voom", email="info@voom.ly" },
-]
+authors = [{ name = "Voom", email = "info@voom.ly" }]
 description = "Python SDK for Voom CRM Integration"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.7"
+keywords = ['python', 'sdk', 'crm', 'voom']
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
     "requests>=2.25.0",
 ]
 
+[build-system]
+requires = ["setuptools>=70.0"]
+build-backend = "setuptools.build_meta"
+
 [project.urls]
 "Homepage" = "https://github.com/kahil-raghed/voom-integration-python-sdk"
 "Bug Tracker" = "https://github.com/kahil-raghed/voom-integration-python-sdk/issues"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
+[project.optional-dependencies]
+dev = ["black", "isort"]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120

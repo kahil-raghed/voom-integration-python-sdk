@@ -1,13 +1,13 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from src.client import VoomClient
-from src.units import UnitFactory
+from voom_integration_sdk.client import Client
+from voom_integration_sdk.units import UnitFactory
 
-class TestVoomClient(unittest.TestCase):
+class TestClient(unittest.TestCase):
     def setUp(self):
         self.client_id = "test_id"
         self.client_secret = "test_secret"
-        self.client = VoomClient(self.client_id, self.client_secret)
+        self.client = Client(self.client_id, self.client_secret)
 
     @patch('src.client.requests.request')
     def test_hello_success(self, mock_request):

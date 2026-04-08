@@ -1,16 +1,16 @@
 import os
 import unittest
-from src.client import VoomClient
-from src.units import UnitFactory
+from voom_integration_sdk.client import Client
+from voom_integration_sdk.units import UnitFactory
 import uuid
 
-class TestVoomClientE2E(unittest.TestCase):
+class TestClientE2E(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # We use the previous credentials used for JS/PHP manually
         cls.client_id = os.getenv("VOOM_CLIENT_ID", "cid_019a7871-975e-7763-b7ae-cd8aeb488326")
         cls.client_secret = os.getenv("VOOM_CLIENT_SECRET", "G7Z5WOZONVYS7WUX6NTY4NNFH7")
-        cls.client = VoomClient(cls.client_id, cls.client_secret)
+        cls.client = Client(cls.client_id, cls.client_secret)
 
     def test_01_hello(self):
         try:

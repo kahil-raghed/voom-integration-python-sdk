@@ -6,7 +6,7 @@ import requests
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 
-class VoomClient:
+class Client:
     DEFAULT_BASE_URL = "https://crm-integration.voomproject.com"
     
     API_HELLO = "/api/client-api/v1/hello"
