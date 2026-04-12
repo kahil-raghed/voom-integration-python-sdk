@@ -9,7 +9,7 @@ class TestClient(unittest.TestCase):
         self.client_secret = "test_secret"
         self.client = Client(self.client_id, self.client_secret)
 
-    @patch('src.client.requests.request')
+    @patch('voom_integration_sdk.client.requests.request')
     def test_hello_success(self, mock_request):
         # Mocking successful API response
         mock_response = MagicMock()
@@ -26,7 +26,7 @@ class TestClient(unittest.TestCase):
         self.assertEqual(args[0], "POST")
         self.assertIn("/api/client-api/v1/hello", args[1])
 
-    @patch('src.client.requests.request')
+    @patch('voom_integration_sdk.client.requests.request')
     def test_bulk_push_success(self, mock_request):
         # Mocking successful API response
         mock_response = MagicMock()
@@ -54,7 +54,7 @@ class TestClient(unittest.TestCase):
         self.assertEqual(len(payload['units']), 1)
         self.assertEqual(payload['units'][0]['unit_id'], "U1")
 
-    @patch('src.client.requests.request')
+    @patch('voom_integration_sdk.client.requests.request')
     def test_get_units_success(self, mock_request):
         # Mocking successful API response
         mock_response = MagicMock()
@@ -67,11 +67,11 @@ class TestClient(unittest.TestCase):
         self.assertEqual(response, {"units": []})
         mock_request.assert_called_once()
         args, kwargs = mock_request.call_args
-        self.assertEqual(args[0], "GET")
+        self.assertEqual(args[0], "POST")
         self.assertIn("/api/client-api/v1/inventory/get-units", args[1])
 
     def test_signature_generation(self):
-        # Test HMﺴAC signature generation
+        # Test HMAC signature generation
         request_id = "test-req-id"
         request_time = "2024-01-01T00:00:00Z"
         

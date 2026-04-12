@@ -13,16 +13,13 @@ class Client:
     API_BULK_PUSH = "/api/client-api/v1/inventory/bulk-push"
     API_GET_UNITS = "/api/client-api/v1/inventory/get-units"
 
-    def __init__(self, client_id: str, client_secret: str, basic_auth: Optional[tuple] = None):
+    def __init__(self, client_id: str, client_secret: str):
         self.client_id = client_id
         self.client_secret = client_secret
-        self.basic_auth = basic_auth
         self.base_url = self.DEFAULT_BASE_URL
         self.is_basic_auth_enabled = False
 
     def use_basic_auth(self, enable: bool = True):
-        if enable and not self.basic_auth:
-            raise ValueError("Basic Auth credentials must be provided in the constructor.")
         self.is_basic_auth_enabled = enable
 
     def _generate_signature(self, request_id: str, request_time: str) -> str:
@@ -43,7 +40,7 @@ class Client:
         auth = None
 
         if self.is_basic_auth_enabled:
-            auth = self.basic_auth
+            auth = (self.client_id, self.client_secret)
         else:
             request_id = str(uuid.uuid4())
             request_time = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -68,4 +65,4 @@ class Client:
         return self._call_api("POST", self.API_BULK_PUSH, data)
 
     def get_units(self):
-        return self._call_api("POST", self.API_GET_UNITS , data={"page": 1, "limit": 10})
+        return self._call_api("POST", self.API_GET_UNITS, data={"page": 1, "limit": 10})

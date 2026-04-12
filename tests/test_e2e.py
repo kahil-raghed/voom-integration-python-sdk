@@ -8,9 +8,19 @@ class TestClientE2E(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # We use the previous credentials used for JS/PHP manually
-        cls.client_id = os.getenv("VOOM_CLIENT_ID", "cid_019a7871-975e-7763-b7ae-cd8aeb488326")
-        cls.client_secret = os.getenv("VOOM_CLIENT_SECRET", "G7Z5WOZONVYS7WUX6NTY4NNFH7")
+        cls.client_id = os.getenv("VOOM_CLIENT_ID", "test client")
+        cls.client_secret = os.getenv("VOOM_CLIENT_SECRET", "test secret")
+        
+        if cls.client_id == "test client" or cls.client_secret == "test secret":
+            cls._skip_e2e = True
+        else:
+            cls._skip_e2e = False
+        
         cls.client = Client(cls.client_id, cls.client_secret)
+
+    def setUp(self):
+        if hasattr(self, "_skip_e2e") and self._skip_e2e:
+            self.skipTest("Skipping E2E tests: VOOM_CLIENT_ID or VOOM_CLIENT_SECRET not set.")
 
     def test_01_hello(self):
         try:
