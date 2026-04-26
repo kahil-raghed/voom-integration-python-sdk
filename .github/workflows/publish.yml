@@ -15,6 +15,12 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install package dependencies
+        run: pip install .
+
+      - name: Run Tests
+        run: python -m unittest
+
       - name: Install build dependencies
         run: pip install build
 
